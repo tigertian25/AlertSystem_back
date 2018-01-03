@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -107,9 +108,14 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 	}
 	
 	//获取所有未完成的版单
-	public List<Map<String, Object>> getAllSampleOrder(){
+	private List<Map<String, Object>> getAllSampleOrder(){
 		// TODO 获取所有未完成的版单
-		return null;
+		List<Map<String, Object>> SampleOrderList=new ArrayList<>();
+		Map<String, Object> SampleOrder=new HashMap<>();
+		SampleOrder.put("sampleOrderId", 123456);
+		SampleOrder.put("styleNumber", 123456);
+		SampleOrderList.add(SampleOrder);
+		return SampleOrderList;
 		
 	}
 

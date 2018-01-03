@@ -1,25 +1,15 @@
 package com.company.alertsystem.service;
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 public class AlertCalculatorServiceBeanTest {
-
-	@Test
-	public void testCalculateAlertList() {
-		fail("Not yet implemented");
-	}
-
+	 
+	AlertCalculatorServiceBean alertCalculatorServiceBean;
 	@Test
 	public void testDateUtil() {
-		fail("Not yet implemented");
+		String date=alertCalculatorServiceBean.dateUtil("2017-10-12 11:11:11", "2018-01-03 15:32:11");
+		System.out.println(date);
 	}
-
-	@Test
-	public void testGetAllSampleOrder() {
-		fail("Not yet implemented");
-	}
-
 
 }
