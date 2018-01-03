@@ -26,16 +26,25 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 	@Override
 	public List<Map<String,Object>> calculateAlertList() {
 		List<Map<String,Object>> returnAlertList = new ArrayList<>();
-		List<Map<String,Object>> SampleOrderList=getAllSampleOrder();//获取未完成的订单列表
-		List<Map<String,Object>> alertList=alertTypeRetriever.retrieveList(SampleOrderList);//筛选出有工序未完成的列表
-		for (Map<String, Object> map : alertList) {//取出超时的数据
+		List<Map<String,Object>> sampleOrderList=getAllSampleOrder();//获取未完成的订单列表
+		List<Map<String,Object>> alertList=alertTypeRetriever.retrieveList(sampleOrderList);//筛选出有工序未完成的列表
+		for (Map<String, Object> alert : alertList) {//循环计算超时的数据
 			try {
 				String timeDifference="";//此字段用于显示超时多少时间
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 				Date now = df.parse(df.format(new Date()));//当前时间
-				AlertSnooze duration=snoozeAccessor.getDuration(Integer.parseInt(map.get("sampleOrderId").toString()), Integer.parseInt(map.get("alertTypeId").toString()));
-			
-				if (!duration.equals(null)&&duration!=null) {//设置了睡眠
+				//超出规定时间
+				int allowedDuration=Integer.parseInt(alert.get("allowedDuration").toString());//规定时限
+				Date fromTimestamp=df.parse(alert.get("fromTimestamp").toString());//当前工序完成时间
+				Calendar calendar1 = Calendar.getInstance();
+				calendar1.setTime(fromTimestamp);
+				System.out.println("当前工序完成时间："+df.format(calendar1.getTime()));
+				calendar1.add(Calendar.SECOND, allowedDuration);
+				System.out.println("规定时间："+df.format(calendar1.getTime()));
+				if(now.getTime()>calendar1.getTime().getTime()) {//当前时间大于规定时间表示超时
+					AlertSnooze duration=snoozeAccessor.getDuration(Integer.parseInt(alert.get("sampleOrderId").toString()), Integer.parseInt(alert.get("alertTypeId").toString()));
+				
+					if (!duration.equals(null)&&duration!=null) {//设置了睡眠
 				
 						
 						Date durationDate=duration.getCreateTime();
@@ -46,23 +55,16 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 						System.out.println("睡眠后时间："+df.format(calendar.getTime()));
 						if(now.getTime()>calendar.getTime().getTime()) {//当前时间大于睡眠后的时间
 							timeDifference=dateUtil(df.format(now),df.format(calendar.getTime()));
-							map.put("timeDifference", timeDifference);
-							returnAlertList.add(map);
+							alert.put("timeDifference", timeDifference);
+							returnAlertList.add(alert);
 						}
 					
-				}else {//没设置睡眠
-					int allowedDuration=Integer.parseInt(map.get("allowedDuration").toString());//规定时限
-					Date fromTimestamp=df.parse(map.get("fromTimestamp").toString());//当前工序完成时间
-					Calendar calendar = Calendar.getInstance();
-					calendar.setTime(fromTimestamp);
-					System.out.println("当前工序完成时间："+df.format(calendar.getTime()));
-					calendar.add(Calendar.SECOND, allowedDuration);
-					System.out.println("规定时间："+df.format(calendar.getTime()));
-					if(now.getTime()>calendar.getTime().getTime()) {//当前时间大于规定时间表示超时
-						timeDifference=dateUtil(df.format(now),df.format(calendar.getTime()));
-						map.put("timeDifference", timeDifference);
-						returnAlertList.add(map);
+					}else {
+						timeDifference=dateUtil(df.format(now),df.format(calendar1.getTime()));
+						alert.put("timeDifference", timeDifference);
+						returnAlertList.add(alert);
 					}
+					
 				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -103,12 +105,7 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 		 
 		return timeDifference;  
 	}
-	//获取所有AlertType
-	public List<AlertType> getAllAlertType(){
-		// TODO 获取所有AlertType
-		return null;
-		
-	}
+	
 	//获取所有未完成的版单
 	public List<Map<String, Object>> getAllSampleOrder(){
 		// TODO 获取所有未完成的版单
