@@ -2,13 +2,15 @@ package com.company.alertsystem.service;
 
 import org.springframework.stereotype.Service;
 
+import com.company.alertsystem.entity.AlertSnooze;
+
 @Service(SnoozeAccessorService.NAME)
 public class SnoozeAccessorServiceBean implements SnoozeAccessorService {
 
 	@Override
-	public int getDuration(int sampleOrderId, int alertTypeId) {
+	public AlertSnooze getDuration(int sampleOrderId, int alertTypeId) {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 	@Override
