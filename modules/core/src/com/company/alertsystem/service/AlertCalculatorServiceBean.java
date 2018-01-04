@@ -44,9 +44,9 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 						if (!duration.equals(null) && duration != null) {// 设置了睡眠
 
 							Date durationDate = duration.getCreateTime();
-							System.out.println("duration创建时间：" + df.format(durationDate));
+							
 							Date snoozeTime = DateUtils.addSeconds(durationDate, allowedDuration);
-							System.out.println("睡眠后时间：" + df.format(snoozeTime.getTime()));
+							
 							if (now.getTime() > snoozeTime.getTime()) {// 当前时间大于睡眠后的时间
 								timeDifference = dateUtil(df.format(now), df.format(snoozeTime.getTime()));
 								alert.setTimeDifference(timeDifference);
