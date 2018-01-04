@@ -7,29 +7,26 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.company.alertsystem.service.AlertCalculatorService.Alert;
+import com.company.alertsystem.service.AlertCalculatorService.SampleOrder;
+
 
 @Service(AlertTypeRetrieverService.NAME)
 public class AlertTypeRetrieverServiceBean implements AlertTypeRetrieverService {
 
 
 	@Override
-	public List<Map<String, Object>> retrieveList(List<Map<String, Object>> sampleOrderList) {
-		List<Map<String, Object>> alertList=new ArrayList<>();
-		for (Map<String, Object> sampleOrder : sampleOrderList) {
+	public List<Alert> retrieveList(List<SampleOrder> sampleOrderList) {
+		List<Alert> alertList=new ArrayList<>();
+		for (SampleOrder sampleOrder : sampleOrderList) {
 			//TODO 判断该sampleOrder的每个工序是否完成，
 			
-			Map<String, Object> alert=new HashMap<>();
-			alert.putAll(sampleOrder);
-			alert.put("fromProcess", "画花发出");
-			alert.put("fromTimestamp", "2017-11-12 15:12:22");
-			alert.put("toProcess", "画花收回");
-			alert.put("alertTypeId", 3);
-			alert.put("allowedDuration", 60*30);
-			alertList.add(alert);
 		}
 		System.out.println(alertList.size());
 		return alertList;
 	}
+
+	
 
 	// 获取所有AlertType
 	/*private List<AlertType> getAllAlertType() {

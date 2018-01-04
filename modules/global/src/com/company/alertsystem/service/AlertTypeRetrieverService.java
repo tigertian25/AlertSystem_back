@@ -1,10 +1,12 @@
 package com.company.alertsystem.service;
 
 import java.util.List;
-import java.util.Map;
+
+import com.company.alertsystem.service.AlertCalculatorService.Alert;
+import com.company.alertsystem.service.AlertCalculatorService.SampleOrder;
 
 public interface AlertTypeRetrieverService {
     String NAME = "AlertTypeRetriever";
     //筛选出工序超时的版单
-    public List<Map<String,Object>> retrieveList(List<Map<String,Object>> alertList) ;
+    public List<Alert> retrieveList(List<SampleOrder> SampleOrderList) ;
 }
