@@ -18,8 +18,7 @@ public class AlertTypeRetrieverServiceBean implements AlertTypeRetrieverService 
 	@Override
 	public List<Alert> retrieveList(List<SampleOrder> sampleOrderList) {
 		List<Alert> alertList=new ArrayList<>();
-		for (SampleOrder sampleOrder : sampleOrderList) {
-			//TODO 判断该sampleOrder的每个工序是否完成，
+		for (int i = 0; i < sampleOrderList.size(); i++) {
 			
 		}
 		System.out.println(alertList.size());
