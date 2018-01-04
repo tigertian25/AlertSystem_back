@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry exported="true" path="D:\AlertSystem\modules\global\build/enhanced-classes" kind="lib"/>
-	<classpathentry path="bin" kind="output"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry path="bin" kind="output"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry sourcepath="C:/Users/Admin/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-global/6.7.6/59d6b0e3c1de1d9e2bd00df7215663d725d62bfc/cuba-global-6.7.6-sources.jar" kind="lib" path="C:/Users/Admin/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-global/6.7.6/5df04cf6de16ccb3df234da53cf5deb1b0ee90d9/cuba-global-6.7.6.jar"/>
 	<classpathentry sourcepath="C:/Users/Admin/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar" kind="lib" path="C:/Users/Admin/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar"/>

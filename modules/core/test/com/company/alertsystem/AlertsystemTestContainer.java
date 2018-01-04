@@ -31,21 +31,10 @@ public class AlertsystemTestContainer extends TestContainer {
                 // specifically for test environment. You can replace it with your own
                 // or add another one in the end.
                 "test-app.properties");
-        appPropertiesFiles = Arrays.asList(
-                // List the files defined in your web.xml
-                // in appPropertiesConfig context parameter of the core module
-                "cuba-app.properties",
-                "sales-app.properties",
-        		//"com/company/alertsystem/app.properties",
-                // Add this file which is located in CUBA and defines some properties
-                // specifically for test environment. You can replace it with your own
-                // or add another one in the end.
-                "test-app.properties");
-        dbDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        dbUrl = "jdbc:sqlserver://10.52.0.52/alertsystem";
-        dbUser = "sa";
-        dbPassword = "tiger123456";
-    
+        /*dbDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        dbUrl = "jdbc:sqlserver://erp.artwell-hk.com;databaseName=ERPDB";
+        dbUser = "sample_track";
+        dbPassword = "DOsqQjZ05h0yjRtI1YaI";*/
         initDbProperties();
     }
 
@@ -60,7 +49,7 @@ public class AlertsystemTestContainer extends TestContainer {
         }
         Document contextXmlDoc = Dom4j.readDocument(contextXmlFile);
         Element resourceElem = contextXmlDoc.getRootElement().element("Resource");
-
+        
         dbDriver = resourceElem.attributeValue("driverClassName");
         dbUrl = resourceElem.attributeValue("url");
         dbUser = resourceElem.attributeValue("username");
