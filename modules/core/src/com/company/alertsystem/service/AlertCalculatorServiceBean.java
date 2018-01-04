@@ -23,8 +23,8 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 
 	@Override
 	public List<Alert> calculateAlertList() {
-		List<Alert> returnAlertList = new ArrayList<>();
-		List<SampleOrder> sampleOrderList = getAllSampleOrder();// 获取未完成的订单列表
+		List<Alert> returnAlertList = new ArrayList<Alert>();
+		List<SampleOrder> sampleOrderList = getSampleOrderList();// 获取未完成的订单列表
 		if (sampleOrderList.size() > 0) {
 			List<Alert> alertList = alertTypeRetriever.retrieveList(sampleOrderList);// 筛选出有工序未完成的列表
 			for (Alert alert : alertList) {// 循环计算超时的数据
@@ -104,10 +104,12 @@ public class AlertCalculatorServiceBean implements AlertCalculatorService {
 	}
 
 	// 获取所有未完成的版单
-	private List<SampleOrder> getAllSampleOrder() {
+	private List<SampleOrder> getSampleOrderList() {
 		// TODO 获取所有未完成的版单
 		List<SampleOrder> SampleOrderList = new ArrayList<>();
 		SampleOrderList.add(new SampleOrder(123456, "sp-123456"));
+		SampleOrderList.add(new SampleOrder(123457, "sp-123457"));
+		SampleOrderList.add(new SampleOrder(123458, "sp-123458"));
 		return SampleOrderList;
 
 	}
