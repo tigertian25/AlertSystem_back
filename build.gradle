@@ -83,6 +83,7 @@ configure(coreModule) {
         provided(servletApi)
         jdbc(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
         testRuntime(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
+        jdbc('com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8') { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
 
     }
 
@@ -104,6 +105,13 @@ configure(coreModule) {
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
         dbms = 'mssql'
+        host = '10.52.0.52'
+        dbName = 'alertsystem'
+        dbUser = 'sa'
+        dbPassword = 'tiger123456'
+    }
+    task createTestDb(dependsOn: assembleDbScripts, description: 'Creates local Postgres database for tests', type: CubaDbCreation) {
+         dbms = 'mssql'
         host = '10.52.0.52'
         dbName = 'alertsystem'
         dbUser = 'sa'

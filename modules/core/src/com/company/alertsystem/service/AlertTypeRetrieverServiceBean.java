@@ -1,6 +1,7 @@
 package com.company.alertsystem.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,8 @@ public class AlertTypeRetrieverServiceBean implements AlertTypeRetrieverService 
 		for (Map<String, Object> sampleOrder : sampleOrderList) {
 			//TODO 判断该sampleOrder的每个工序是否完成，
 			
-			Map<String, Object> alert=sampleOrder;
+			Map<String, Object> alert=new HashMap<>();
+			alert.putAll(sampleOrder);
 			alert.put("fromProcess", "画花发出");
 			alert.put("fromTimestamp", "2017-11-12 15:12:22");
 			alert.put("toProcess", "画花收回");
@@ -25,6 +27,7 @@ public class AlertTypeRetrieverServiceBean implements AlertTypeRetrieverService 
 			alert.put("allowedDuration", 60*30);
 			alertList.add(alert);
 		}
+		System.out.println(alertList.size());
 		return alertList;
 	}
 

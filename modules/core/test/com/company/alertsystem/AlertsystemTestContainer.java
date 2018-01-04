@@ -22,6 +22,7 @@ public class AlertsystemTestContainer extends TestContainer {
                 // "com.haulmont.reports",
                 // and custom app components if any
         ));
+        
         appPropertiesFiles = Arrays.asList(
                 // List the files defined in your web.xml
                 // in appPropertiesConfig context parameter of the core module
@@ -30,6 +31,21 @@ public class AlertsystemTestContainer extends TestContainer {
                 // specifically for test environment. You can replace it with your own
                 // or add another one in the end.
                 "test-app.properties");
+        appPropertiesFiles = Arrays.asList(
+                // List the files defined in your web.xml
+                // in appPropertiesConfig context parameter of the core module
+                "cuba-app.properties",
+                "sales-app.properties",
+        		//"com/company/alertsystem/app.properties",
+                // Add this file which is located in CUBA and defines some properties
+                // specifically for test environment. You can replace it with your own
+                // or add another one in the end.
+                "test-app.properties");
+        dbDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        dbUrl = "jdbc:sqlserver://10.52.0.52/alertsystem";
+        dbUser = "sa";
+        dbPassword = "tiger123456";
+    
         initDbProperties();
     }
 
